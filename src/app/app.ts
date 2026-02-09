@@ -4,7 +4,7 @@ import {ThemeButtonComponent} from './shared/components/theme-button-component/t
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ThemeButtonComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
