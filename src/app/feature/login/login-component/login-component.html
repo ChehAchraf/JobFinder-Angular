@@ -1,1 +1,24 @@
-<p>login-component works!</p>
+<section class="min-h-screen flex flex-col justify-center items-center space-y-8">
+
+  <h1 class="text-2xl font-bold">
+    Welcome back !
+  </h1>
+  <form class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <fieldset class="fieldset">
+      <label class="label">Email</label>
+      <input type="email" class="input validator" placeholder="Email" required />
+      <p class="validator-hint hidden">Required</p>
+    </fieldset>
+
+    <label class="fieldset">
+      <span class="label">Password</span>
+      <input type="password" class="input validator" placeholder="Password" required />
+      <span class="validator-hint hidden">Required</span>
+    </label>
+
+    <button class="btn btn-neutral mt-4" type="submit">Login</button>
+    <button class="btn btn-ghost mt-1" type="reset">Reset</button>
+  </form>
+
+  <p>you dont have an account? <span class="underline cursor-pointer" routerLink="/register">sign up!</span> </p>
+</section>
