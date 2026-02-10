@@ -2,12 +2,15 @@
   <div class="card-body">
     <h4 class="card-title text-sm flex justify-between">
       <div>
-        {{ job().name }}
+        <a [href]="job().refs.landing_page" _blank>{{ job().name }}</a>
       </div>
       <div class="line-clamp-1 badge badge-secondary text-xs h-auto whitespace-normal py-1 text-center">{{ job().company.name }}</div>
-      <div [innerHTML]="job().contents"></div>
     </h4>
-
+    <div class="divider"></div>
+    <div >
+      <p [innerHTML]="job().contents | truncate"></p>
+    </div>
+    <div class="divider"></div>
     <p class="text-sm text-gray-500">
       {{ job().locations[0]?.name }} • {{ job().publication_date | date:'shortDate' }}
     </p>
