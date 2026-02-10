@@ -1,0 +1,59 @@
+import {Job} from '../core/model/job.model';
+import {patchState, signalStore, withComputed, withMethods, withState} from '@ngrx/signals';
+import {computed, inject} from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
+import {JobService} from '../core/service/job-service';
+import {rxMethod} from '@ngrx/signals/rxjs-interop';
+import {pipe, switchMap, tap} from 'rxjs';
+
+
+type JobState = {
+  jobs : Job[];
+  total: number;
+  page: number;
+  query: string;
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: JobState = {
+  jobs: [],
+  total: 0,
+  page: 0,
+  query: '',
+  isLoading: false,
+  error: null,
+};
+
+export const JobStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withMethods( (store, jobService = inject(JobService)) =>({
+
+    loadJobs : rxMethod<void>(
+      pipe(
+        tap( (data)=> patchState(store, { isLoading : true })  ),
+        switchMap(()=>{
+          return jobService.getJobs(4).pipe(
+            tapResponse({
+              next: (response)=>{
+                console.log(response)
+                patchState(store,{
+                  jobs: response.results,
+                  isLoading : false
+                })
+              },
+              error: (err:any) => {
+                patchState(store, {
+                  isLoading: false,
+                  error: err.message
+                });
+              },
+            })
+          )
+        })
+      )
+    )
+
+  }))
+)

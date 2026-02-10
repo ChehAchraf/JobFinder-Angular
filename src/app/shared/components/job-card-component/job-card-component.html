@@ -1,18 +1,20 @@
-<div class="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
+<div class="card bg-base-100 w-96 shadow-sm hover:shadow-xl transition-all">
   <div class="card-body">
-    <h2 class="card-title">
-      Card Title
-      <div class="badge badge-secondary">NEW</div>
-    </h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div class="card-actions justify-end">
-      <div class="badge badge-outline">Fashion</div>
-      <div class="badge badge-outline">Products</div>
+    <h4 class="card-title text-sm flex justify-between">
+      <div>
+        {{ job().name }}
+      </div>
+      <div class="line-clamp-1 badge badge-secondary text-xs h-auto whitespace-normal py-1 text-center">{{ job().company.name }}</div>
+    </h4>
+
+    <p class="text-sm text-gray-500">
+      {{ job().locations[0]?.name }} • {{ job().publication_date | date:'shortDate' }}
+    </p>
+
+    <div class="card-actions justify-end mt-4">
+      @for(level of job().levels; track $index) {
+        <div class="badge badge-outline">{{ level.name }}</div>
+      }
     </div>
   </div>
 </div>
