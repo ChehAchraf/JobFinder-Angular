@@ -5,13 +5,15 @@
         {{ job().name }}
       </div>
       <div class="line-clamp-1 badge badge-secondary text-xs h-auto whitespace-normal py-1 text-center">{{ job().company.name }}</div>
+      <div [innerHTML]="job().contents"></div>
     </h4>
 
     <p class="text-sm text-gray-500">
       {{ job().locations[0]?.name }} • {{ job().publication_date | date:'shortDate' }}
     </p>
 
-    <div class="card-actions justify-end mt-4">
+    <div class="card-actions justify-between mt-4 ">
+      <button class="btn btn-sm">Save</button>
       @for(level of job().levels; track $index) {
         <div class="badge badge-outline">{{ level.name }}</div>
       }
