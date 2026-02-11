@@ -1,6 +1,46 @@
 {
-  "users": {
-
-  }
-
+  "users": [
+    {
+      "username": "mohamed",
+      "email": "mohamed@gmail.com",
+      "password": "shi haja w sf wlh",
+      "id": "2771"
+    },
+    {
+      "id": "e6fe",
+      "username": "Voluptatem quia omni",
+      "email": "zuzofy@mailinator.com",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "ebac",
+      "username": "Nisi autem natus eum",
+      "email": "jakuhe@mailinator.com",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "192e",
+      "username": "Dolor amet dignissi",
+      "email": "zajil@mailinator.com",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "5669",
+      "username": "Nesciunt inventore ",
+      "email": "tutered@mailinator.com",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "2265",
+      "username": "Sunt vero tempora ve",
+      "email": "cekowuz@mailinator.com",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "8797",
+      "username": "Consectetur a non a",
+      "email": "zeku@mailinator.com",
+      "password": "Pa$$w0rd!"
+    }
+  ]
 }

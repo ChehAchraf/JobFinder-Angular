@@ -3,9 +3,13 @@ export interface ILoginRequest{
   password : string;
 }
 
+export interface ILoginResponse{
+  email : string,
+  password : string;
+}
+
 export interface IRegisterRequest{
-  id : number,
-  username : string,
+  username? : string,
   email : string,
   password : string;
 }

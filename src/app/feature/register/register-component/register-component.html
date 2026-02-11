@@ -3,7 +3,7 @@
   <h1 class="text-2xl font-bold">
     Welcome !
   </h1>
-  <form [formGroup]="registerForm" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <form (ngSubmit)="submit()"  [formGroup]="registerForm" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
     <fieldset class="fieldset">
       <label class="label">Username</label>
       <input formControlName="username" type="text" class="input validator" placeholder="Username" required />

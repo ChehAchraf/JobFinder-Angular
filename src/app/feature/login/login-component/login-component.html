@@ -22,3 +22,11 @@
 
   <p>you dont have an account? <span class="underline cursor-pointer" routerLink="/register">sign up!</span> </p>
 </section>
+
+@if (successMessage) {
+<div class="toast toast-end">
+  <div role="alert" class="alert alert-success alert-soft">
+    <span> {{successMessage}} </span>
+  </div>
+</div>
+}

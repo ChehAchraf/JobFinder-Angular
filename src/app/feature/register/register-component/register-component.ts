@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, NonNullableFormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AuthService} from '../../../core/service/auth-service';
+import {AuthStore} from '../../../store/auth.store';
 
 @Component({
   selector: 'app-register-component',
@@ -14,7 +16,9 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 })
 export class RegisterComponent {
 
-  private readonly fb = inject(FormBuilder)
+  private readonly fb = inject(NonNullableFormBuilder)
+  private readonly authService = inject(AuthService)
+  private readonly store = inject(AuthStore)
 
   registerForm = this.fb.group({
     username: ['',[Validators.required,Validators.minLength(4)]],
@@ -34,7 +38,14 @@ export class RegisterComponent {
     return this.registerForm.controls.password;
   }
 
+  submit() : void {
+    if (this.registerForm.invalid) return;
 
+    const data = this.registerForm.getRawValue();
+
+    this.store.register(data);
+
+  }
 
 
 }
