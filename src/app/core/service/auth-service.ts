@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.development';
-import {ILoginRequest, ILoginResponse, IRegisterRequest} from '../model/user.model';
+import {ILoginRequest, ILoginResponse, IRegisterRequest, User} from '../model/user.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -15,9 +15,9 @@ export class AuthService {
     return this.http.post<ILoginResponse>(`${this.jsonServerApi}/users`,userRegistrationData)
   }
 
-  
-   userLogin(userLoginData : ILoginRequest) : Observable<ILoginResponse>{
-    return this.http.get<ILoginResponse>(`${this.jsonServerApi}?email=${userLoginData.email}?password=${userLoginData.password}`);
+
+   userLogin(userLoginData : ILoginRequest) : Observable<User[]>{
+    return this.http.get<User[]>(`${this.jsonServerApi}/users?email=${userLoginData.email}&password=${userLoginData.password}`);
   }
 
 

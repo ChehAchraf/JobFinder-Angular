@@ -7,8 +7,6 @@ import {JobCardComponent} from '../../../../shared/components/job-card-component
 @Component({
   selector: 'app-job-list-section-component',
   imports: [
-    RotatingTextComponent,
-    SearchJobComponent,
     JobCardComponent
   ],
   templateUrl: './job-list-section-component.html',

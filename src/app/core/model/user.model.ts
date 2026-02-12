@@ -1,6 +1,6 @@
 export interface ILoginRequest{
-  email : string,
-  password : string;
+  email : string | null,
+  password : string | null;
 }
 
 export interface ILoginResponse{
@@ -15,3 +15,8 @@ export interface IRegisterRequest{
   password : string;
 }
 
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+}

@@ -3,21 +3,39 @@
   <h1 class="text-2xl font-bold">
     Welcome back !
   </h1>
-  <form class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <div>
+    @if (authStore.error()) {
+    <div class="bg-red-100 text-red-700 p-3 rounded">
+      {{ authStore.error() }}
+    </div>
+    }
+  </div>
+  <form (ngSubmit)="submit()" [formGroup]="loginForm"
+    class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
     <fieldset class="fieldset">
       <label class="label">Email</label>
-      <input type="email" class="input validator" placeholder="Email" required />
-      <p class="validator-hint hidden">Required</p>
+      <input formControlName="email" type="email" class="input validator" placeholder="Email" required />
+      @if (email.touched && email.hasError('required')) {
+      <p class="text-red-500">email is required</p>
+      }@else if (email.touched && email.hasError('email')) {
+      <p class="text-red-500">please enter a valid email</p>
+      }
+    </fieldset>
+    <fieldset class="fieldset">
+      <label class="fieldset">
+        <span class="label">Password</span>
+        <input formControlName="password" type="password" class="input validator" placeholder="Password" required />
+        @if (password.touched && password.hasError('minlength')) {
+        <p class="text-red-500">password must be greater than 6 character</p>
+        }@else if (password.touched && password.hasError('required')) {
+        <p class="text-red-500">password is required</p>
+        }
+      </label>
     </fieldset>
 
-    <label class="fieldset">
-      <span class="label">Password</span>
-      <input type="password" class="input validator" placeholder="Password" required />
-      <span class="validator-hint hidden">Required</span>
-    </label>
-
-    <button class="btn btn-neutral mt-4" type="submit">Login</button>
-    <button class="btn btn-ghost mt-1" type="reset">Reset</button>
+    <button [disabled]="loginForm.invalid" class="btn btn-neutral mt-4 disabled:cursor-not-allowed"
+      type="submit">Login</button>
+    <button class="btn btn-ghost mt-1 " type="reset">Reset</button>
   </form>
 
   <p>you dont have an account? <span class="underline cursor-pointer" routerLink="/register">sign up!</span> </p>

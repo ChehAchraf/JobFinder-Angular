@@ -42,5 +42,15 @@
       "email": "zeku@mailinator.com",
       "password": "Pa$$w0rd!"
     }
+  ],
+  "fav" : [
+    {
+      "userId" : "12er",
+      "jobId": "98234", 
+      "jobTitle": "Senior Frontend Dev",
+      "companyName": "Google",
+      "location": "Remote",
+      "date": "2023-10-12"
+    }
   ]
 }

@@ -11,7 +11,6 @@ import {JobStore} from '../../../store/job.store';
     NavbarComponent,
     HeroSectionComponent,
     JobListSectionComponent,
-    JobCardComponent
   ],
   templateUrl: './home-component.html',
   styleUrl: './home-component.css',

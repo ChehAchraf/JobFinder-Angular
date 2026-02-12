@@ -5,19 +5,22 @@ import {rxMethod} from '@ngrx/signals/rxjs-interop';
 import {pipe, switchMap, tap} from 'rxjs';
 import {tapResponse} from '@ngrx/operators';
 import {Router} from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+
+
 
 type UserState = {
   user : any | null,
   isAuthenticated : boolean,
   isLoading : boolean,
-  error : string | null,
+  error : null | string | undefined,
   }
 
 const initialState : UserState = {
   user: null,
   isAuthenticated: false,
   isLoading: false,
-  error: null,
+  error:  undefined,
 }
 
 
@@ -53,6 +56,45 @@ export const AuthStore = signalStore(
           )
         })
       )
+    ),
+    login : rxMethod<{email : string | null , password : string | null}>(
+      // start pipe
+      pipe(
+        tap((data) => patchState(store, {isLoading : true, error:null})),
+        switchMap((credentials) => {
+          return authService.userLogin(credentials).pipe(
+            tapResponse({
+              next : (users )=>{
+                if(users.length > 0){
+                  const user = users[0];
+
+                  localStorage.setItem('user_session', JSON.stringify(user));
+
+                  patchState(store, { 
+                    user: user, 
+                    isAuthenticated: true, 
+                    isLoading: false 
+                  });
+                  router.navigate(['/']);
+                }else {
+                  patchState(store, { 
+                    isLoading: false, 
+                    error: 'Email ou mot de passe incorrect' 
+                  });
+                }
+                
+              },
+              error : (err : HttpErrorResponse)=>{
+                patchState(store,{
+                  isLoading : false,
+                  error : err.message
+                })
+              }
+            })
+          )
+        })
+      )
+      // end pipe
     )
-  }) )
+  }))
 )
