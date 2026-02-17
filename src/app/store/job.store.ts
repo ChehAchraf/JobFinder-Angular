@@ -1,10 +1,11 @@
 import {Job} from '../core/model/job.model';
-import {patchState, signalStore, withComputed, withMethods, withState} from '@ngrx/signals';
-import {computed, inject} from '@angular/core';
+import {patchState, signalStore, withMethods, withState} from '@ngrx/signals';
+import {inject} from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {JobService} from '../core/service/job-service';
 import {rxMethod} from '@ngrx/signals/rxjs-interop';
 import {pipe, switchMap, tap} from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 type JobState = {
@@ -32,7 +33,7 @@ export const JobStore = signalStore(
 
     loadJobs : rxMethod<void>(
       pipe(
-        tap( (data)=> patchState(store, { isLoading : true })  ),
+        tap( ()=> patchState(store, { isLoading : true })  ),
         switchMap(()=>{
           return jobService.getJobs(4).pipe(
             tapResponse({
@@ -43,7 +44,7 @@ export const JobStore = signalStore(
                   isLoading : false
                 })
               },
-              error: (err:any) => {
+              error: (err:HttpErrorResponse) => {
                 patchState(store, {
                   isLoading: false,
                   error: err.message
@@ -53,7 +54,9 @@ export const JobStore = signalStore(
           )
         })
       )
-    )
+    ),
+
+    
 
   }))
 )

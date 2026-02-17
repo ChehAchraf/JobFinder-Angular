@@ -1,7 +1,8 @@
-import {Component, input} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {Job} from '../../../core/model/job.model';
 import {DatePipe} from '@angular/common';
 import {TruncatePipe} from '../../pipes/truncate-pipe';
+import { FavStore } from '../../../store/fav.store';
 
 @Component({
   selector: 'app-job-card-component',
@@ -14,4 +15,11 @@ import {TruncatePipe} from '../../pipes/truncate-pipe';
 })
 export class JobCardComponent {
   job = input.required<Job>();
+
+  onAddFavorite = output<Job>()
+
+  addToFav(){
+    this.onAddFavorite.emit(this.job())
+  }
+  
 }

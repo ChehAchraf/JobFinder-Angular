@@ -1,0 +1,32 @@
+<app-navbar-component />
+<div class="px-32 py-12">
+    <app-bread-crumbs-component />
+
+    <div class="mt-8">
+        @if (favStore.isLoading()) {
+        <div class="skeleton h-32 w-40"></div>
+        } @else if (isEmpty()){
+          <p>Sorry but there are no favorite jobs yet, add some first.</p>
+        } @else {
+        <ul class="list bg-base-100 rounded-box shadow-md">
+
+            <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Youre favorite saved jobs</li>
+
+            @for (job of favStore.fav(); track $index) {
+            <li class="list-row">
+                <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp" />
+                </div>
+                <div class="list-col-grow">
+                    <div>{{ job.jobTitle }}</div>
+                    <div class="text-xs uppercase font-semibold opacity-60">{{ job.location }}</div>
+                </div>
+                <button (click)="delete(job.id)" class="btn btn-square btn-ghost">
+                    <lucide-angular color="red" [img]="HeartIcon" class="my-icon"></lucide-angular>
+                </button>
+            </li>
+            }
+        </ul>
+        }
+    </div>
+
+</div>

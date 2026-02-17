@@ -16,7 +16,7 @@
     </p>
 
     <div class="card-actions justify-between mt-4 ">
-      <button class="btn btn-sm">Save</button>
+      <button (click)="addToFav()" class="btn btn-sm">Save</button>
       @for(level of job().levels; track $index) {
         <div class="badge badge-outline">{{ level.name }}</div>
       }

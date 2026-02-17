@@ -17,5 +17,10 @@ export const routes: Routes = [
     path: 'register',
     loadComponent : () => import('./feature/register/register-component/register-component')
       .then((c)=>c.RegisterComponent)
+  },
+  {
+    path : 'favorite',
+    loadComponent : ()=>import('./feature/favorite/favorite-component/favorite-component')
+      .then((c)=>c.FavoriteComponent)
   }
 ];

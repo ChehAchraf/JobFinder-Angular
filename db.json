@@ -1,12 +1,6 @@
 {
   "users": [
     {
-      "username": "mohamed",
-      "email": "mohamed@gmail.com",
-      "password": "shi haja w sf wlh",
-      "id": "2771"
-    },
-    {
       "id": "e6fe",
       "username": "Voluptatem quia omni",
       "email": "zuzofy@mailinator.com",
@@ -41,16 +35,32 @@
       "username": "Consectetur a non a",
       "email": "zeku@mailinator.com",
       "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "d065",
+      "username": "ashraf",
+      "email": "ashraf@gmail.com",
+      "password": "khalid1999"
     }
   ],
-  "fav" : [
+  "fav": [
     {
-      "userId" : "12er",
-      "jobId": "98234", 
-      "jobTitle": "Senior Frontend Dev",
-      "companyName": "Google",
-      "location": "Remote",
-      "date": "2023-10-12"
+      "id": "3e6b",
+      "userId": "d065",
+      "jobId": "19039020",
+      "jobTitle": "Outside Sales Rep - SIGN ON BONUS",
+      "companyName": "The Staff Pad",
+      "location": "Minneapolis, MN",
+      "date": "2025-05-21T09:52:20Z"
+    },
+    {
+      "id": "f791",
+      "userId": "d065",
+      "jobId": "17793695",
+      "jobTitle": "Senior Java AWS Developer",
+      "companyName": "CGI Group, Inc.",
+      "location": "Austin, TX",
+      "date": "2025-03-09T10:04:51Z"
     }
   ]
 }
