@@ -10,7 +10,8 @@ import { FavStore } from '../../../../store/fav.store';
 @Component({
   selector: 'app-job-list-section-component',
   imports: [
-    JobCardComponent
+    JobCardComponent,
+    SearchJobComponent
   ],
   templateUrl: './job-list-section-component.html',
   styleUrl: './job-list-section-component.css',

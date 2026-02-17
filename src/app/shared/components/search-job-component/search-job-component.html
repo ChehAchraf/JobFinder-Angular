@@ -1,7 +1,29 @@
-<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-  <legend class="fieldset-legend">Search</legend>
-  <div class="join">
-    <input type="text" class="input join-item" placeholder="Job name..." />
-    <button class="btn join-item">Find</button>
-  </div>
-</fieldset>
+<div class="bg-base-200 p-6 rounded-xl shadow-md mb-8">
+  <form [formGroup]="searchForm" class="flex flex-col md:flex-row gap-4">
+    
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-bold">Domaine / Métier</span>
+      </label>
+      <input 
+        type="text" 
+        formControlName="category" 
+        placeholder="Ex: Software Engineer, Data Science..." 
+        class="input input-bordered w-full" 
+      />
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-bold">Lieu</span>
+      </label>
+      <input 
+        type="text" 
+        formControlName="location" 
+        placeholder="Ex: Remote, New York, Paris..." 
+        class="input input-bordered w-full" 
+      />
+    </div>
+
+  </form>
+</div>

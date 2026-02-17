@@ -4,7 +4,7 @@ import {inject} from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {JobService} from '../core/service/job-service';
 import {rxMethod} from '@ngrx/signals/rxjs-interop';
-import {pipe, switchMap, tap} from 'rxjs';
+import {debounceTime, distinctUntilChanged, pipe, switchMap, tap} from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -55,7 +55,29 @@ export const JobStore = signalStore(
         })
       )
     ),
-
+    searchJobs: rxMethod<{ category: string; location: string }>(
+      pipe(
+        debounceTime(500), 
+        distinctUntilChanged((prev, curr) => 
+          prev.category === curr.category && prev.location === curr.location
+        ),
+        tap(() => patchState(store, { isLoading: true, error: null })),
+        switchMap((filters) => {
+          return jobService.getJobs(1, filters.category, filters.location).pipe(
+            tapResponse({
+              next: (response) => patchState(store, { 
+                jobs: response.results, 
+                isLoading: false 
+              }),
+              error: (err : HttpErrorResponse) => patchState(store, { 
+                isLoading: false, 
+                error: err.message 
+              })
+            })
+          );
+        })
+      )
+    )
     
 
   }))
