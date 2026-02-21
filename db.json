@@ -45,22 +45,28 @@
   ],
   "fav": [
     {
-      "id": "3e6b",
+      "id": "7995",
       "userId": "d065",
-      "jobId": "19039020",
-      "jobTitle": "Outside Sales Rep - SIGN ON BONUS",
-      "companyName": "The Staff Pad",
-      "location": "Minneapolis, MN",
-      "date": "2025-05-21T09:52:20Z"
-    },
+      "jobId": "21310754",
+      "jobTitle": "Wisconsin Statewide Traveler, Nurse Practitioner or Physician Assistant - Optum Care at Home",
+      "companyName": "Optum",
+      "location": "New Berlin, WI",
+      "date": "2026-02-21T13:33:49Z"
+    }
+  ],
+  "applications": [
     {
-      "id": "f791",
+      "id": "a624",
       "userId": "d065",
-      "jobId": "17793695",
-      "jobTitle": "Senior Java AWS Developer",
-      "companyName": "CGI Group, Inc.",
-      "location": "Austin, TX",
-      "date": "2025-03-09T10:04:51Z"
+      "offerId": "19225596",
+      "apiSource": "themuse",
+      "title": "Registered Nurse Registered Nurse Med/Surg Telemetry Full Time Nights",
+      "company": "DMC Sinai-Grace Hospital",
+      "location": "Dearborn, MI",
+      "url": "https://www.themuse.com/jobs/dmcsinaigracehospital/registered-nurse-registered-nurse-medsurg-telemetry-full-time-nights-6ec354",
+      "status": "en_attente",
+      "notes": "",
+      "dateAdded": "2026-02-21T14:21:52.338Z"
     }
   ]
 }

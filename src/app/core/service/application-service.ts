@@ -8,7 +8,7 @@ import { Application } from '../model/application.model';
 })
 export class ApplicationService {
   private http = inject(HttpClient);
-  private apiUrl = environment.jsonServer;
+  private apiUrl = `${environment.jsonServer}/applications`;
 
 
   getUserApplications(userId: string) {

@@ -4,10 +4,11 @@
       <div>
         <a [href]="job().refs.landing_page" _blank>{{ job().name }}</a>
       </div>
-      <div class="line-clamp-1 badge badge-secondary text-xs h-auto whitespace-normal py-1 text-center">{{ job().company.name }}</div>
+      <div class="line-clamp-1 badge badge-secondary text-xs h-auto whitespace-normal py-1 text-center">{{
+        job().company.name }}</div>
     </h4>
     <div class="divider"></div>
-    <div >
+    <div>
       <p [innerHTML]="job().contents | truncate"></p>
     </div>
     <div class="divider"></div>
@@ -17,8 +18,13 @@
 
     <div class="card-actions justify-between mt-4 ">
       <button (click)="addToFav()" class="btn btn-sm">Save</button>
+      @if (authStore.isAuthenticated()) {
+      <button class="btn btn-primary btn-sm" (click)="suivreCandidature()">
+        Suivre cette candidature
+      </button>
+      }
       @for(level of job().levels; track $index) {
-        <div class="badge badge-outline">{{ level.name }}</div>
+      <div class="badge badge-outline">{{ level.name }}</div>
       }
     </div>
   </div>
