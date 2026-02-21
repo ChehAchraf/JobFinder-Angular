@@ -106,7 +106,16 @@ export const AuthStore = signalStore(
           )
         })
       )
-      // end pipe
-    )
+
+    ),
+    logout: () => {
+      localStorage.removeItem('user_session');
+      patchState(store, {
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        error: null
+      });
+    }
   }))
 )
