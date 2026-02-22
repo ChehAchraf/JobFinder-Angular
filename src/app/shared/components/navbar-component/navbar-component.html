@@ -10,6 +10,7 @@
         <li><a routerLink="/">Home</a></li>
         @if (authStore.isAuthenticated()) {
         <li><a routerLink="/favorite">Favorites</a></li>
+        <li><a routerLink="/applications">Applications</a></li>
         }
       </ul>
     </div>
@@ -20,6 +21,7 @@
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
       @if (authStore.isAuthenticated()) {
       <li><a routerLink="/favorite" routerLinkActive="active">Favorites</a></li>
+      <li><a routerLink="/applications" routerLinkActive="active">Applications</a></li>
       }
     </ul>
   </div>
@@ -34,7 +36,8 @@
         </div>
       </div>
       <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li class="menu-title">Hello, {{ authStore.user()?.username }}</li>
+        <li class="menu-title">Hello, {{ authStore.user()?.prenom }}</li>
+        <li><a routerLink="/profile">Profile</a></li>
         <li><a (click)="logout()">Logout</a></li>
       </ul>
     </div>

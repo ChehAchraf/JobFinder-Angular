@@ -41,7 +41,7 @@ export const AuthStore = signalStore(
   withState(initialState),
 
   withMethods((store, authService = inject(AuthService), router = inject(Router)) => ({
-    register: rxMethod<{ username: string, email: string, password: string }>(
+    register: rxMethod<{ nom: string, prenom: string, email: string, password: string }>(
       pipe(
         tap((data) => patchState(store, { isLoading: true, error: null })),
         switchMap((credentials) => {
@@ -116,6 +116,52 @@ export const AuthStore = signalStore(
         isLoading: false,
         error: null
       });
-    }
+    },
+    updateProfile: rxMethod<Partial<any> & { id: string }>(
+      pipe(
+        tap(() => patchState(store, { isLoading: true, error: null })),
+        switchMap((payload) => {
+          const { id, ...data } = payload;
+          return authService.updateProfile(id, data).pipe(
+            tapResponse({
+              next: (updatedUser) => {
+                localStorage.setItem('user_session', JSON.stringify(updatedUser));
+                patchState(store, {
+                  user: updatedUser,
+                  isLoading: false
+                });
+              },
+              error: (err: HttpErrorResponse) => {
+                patchState(store, { error: err.message, isLoading: false });
+              }
+            })
+          );
+        })
+      )
+    ),
+    deleteAccount: rxMethod<string>(
+      pipe(
+        tap(() => patchState(store, { isLoading: true, error: null })),
+        switchMap((id) => {
+          return authService.deleteAccount(id).pipe(
+            tapResponse({
+              next: () => {
+                localStorage.removeItem('user_session');
+                patchState(store, {
+                  user: null,
+                  isAuthenticated: false,
+                  isLoading: false,
+                  error: null
+                });
+                router.navigate(['/login']);
+              },
+              error: (err: HttpErrorResponse) => {
+                patchState(store, { error: err.message, isLoading: false });
+              }
+            })
+          );
+        })
+      )
+    )
   }))
 )

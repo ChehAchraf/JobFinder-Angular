@@ -1,0 +1,98 @@
+<app-navbar-component />
+<div class="px-6 md:px-16 lg:px-32 py-12">
+    <app-bread-crumbs-component />
+
+    <h2 class="text-2xl font-bold mt-6 mb-2">Mon Profil</h2>
+    <p class="text-sm opacity-60 mb-8">Gérez vos informations personnelles et les paramètres de votre compte.</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <div class="lg:col-span-2">
+            <div class="card bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-lg mb-4">Informations personnelles</h3>
+
+                    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset class="fieldset">
+                                <label class="label font-semibold text-sm">Nom</label>
+                                <input formControlName="nom" type="text" class="input input-bordered w-full"
+                                    placeholder="Votre nom" />
+                                @if (profileForm.get('nom')?.touched && profileForm.get('nom')?.hasError('required')) {
+                                <p class="text-error text-xs mt-1">Le nom est requis</p>
+                                }
+                                @if (profileForm.get('nom')?.touched && profileForm.get('nom')?.hasError('minlength')) {
+                                <p class="text-error text-xs mt-1">Minimum 2 caractères</p>
+                                }
+                            </fieldset>
+
+                            <fieldset class="fieldset">
+                                <label class="label font-semibold text-sm">Prénom</label>
+                                <input formControlName="prenom" type="text" class="input input-bordered w-full"
+                                    placeholder="Votre prénom" />
+                                @if (profileForm.get('prenom')?.touched &&
+                                profileForm.get('prenom')?.hasError('required')) {
+                                <p class="text-error text-xs mt-1">Le prénom est requis</p>
+                                }
+                                @if (profileForm.get('prenom')?.touched &&
+                                profileForm.get('prenom')?.hasError('minlength')) {
+                                <p class="text-error text-xs mt-1">Minimum 2 caractères</p>
+                                }
+                            </fieldset>
+                        </div>
+
+                        <fieldset class="fieldset">
+                            <label class="label font-semibold text-sm">Email</label>
+                            <input formControlName="email" type="email" class="input input-bordered w-full"
+                                placeholder="votre@email.com" />
+                            @if (profileForm.get('email')?.touched && profileForm.get('email')?.hasError('required')) {
+                            <p class="text-error text-xs mt-1">L'email est requis</p>
+                            }
+                            @if (profileForm.get('email')?.touched && profileForm.get('email')?.hasError('email')) {
+                            <p class="text-error text-xs mt-1">Format d'email invalide</p>
+                            }
+                        </fieldset>
+
+                        <fieldset class="fieldset">
+                            <label class="label font-semibold text-sm">Nouveau mot de passe</label>
+                            <input formControlName="password" type="password" class="input input-bordered w-full"
+                                placeholder="Laisser vide pour ne pas changer" />
+                            <p class="text-xs opacity-50 mt-1">Laissez vide si vous ne souhaitez pas modifier votre mot
+                                de passe.</p>
+                        </fieldset>
+
+                        <div class="pt-2">
+                            <button type="submit" class="btn btn-primary w-full md:w-auto"
+                                [disabled]="profileForm.invalid || authStore.isLoading()">
+                                @if (authStore.isLoading()) {
+                                <span class="loading loading-spinner loading-sm"></span>
+                                }
+                                Enregistrer les modifications
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div class="card bg-base-100 shadow-sm border-2 border-error/20">
+                <div class="card-body">
+                    <h3 class="card-title text-lg text-error">Zone de danger</h3>
+                    <p class="text-sm opacity-60 mt-2">
+                        La suppression de votre compte est définitive. Toutes vos données, candidatures et favoris
+                        seront perdus.
+                    </p>
+                    <div class="mt-4">
+                        <button class="btn btn-error btn-outline w-full" (click)="onDeleteAccount()">
+                            🗑️ Supprimer mon compte
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

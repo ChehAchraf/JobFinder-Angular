@@ -43,30 +43,20 @@
       "password": "khalid1999"
     }
   ],
-  "fav": [
-    {
-      "id": "7995",
-      "userId": "d065",
-      "jobId": "21310754",
-      "jobTitle": "Wisconsin Statewide Traveler, Nurse Practitioner or Physician Assistant - Optum Care at Home",
-      "companyName": "Optum",
-      "location": "New Berlin, WI",
-      "date": "2026-02-21T13:33:49Z"
-    }
-  ],
+  "fav": [],
   "applications": [
     {
-      "id": "a624",
+      "id": "6e7f",
       "userId": "d065",
-      "offerId": "19225596",
+      "offerId": "17625191",
       "apiSource": "themuse",
-      "title": "Registered Nurse Registered Nurse Med/Surg Telemetry Full Time Nights",
-      "company": "DMC Sinai-Grace Hospital",
-      "location": "Dearborn, MI",
-      "url": "https://www.themuse.com/jobs/dmcsinaigracehospital/registered-nurse-registered-nurse-medsurg-telemetry-full-time-nights-6ec354",
-      "status": "en_attente",
+      "title": "Relationship Banker - Sarasota Market",
+      "company": "Bank of America",
+      "location": "Sarasota, FL",
+      "url": "https://www.themuse.com/jobs/bankofamerica/relationship-banker-sarasota-market-ede304",
+      "status": "refuse",
       "notes": "",
-      "dateAdded": "2026-02-21T14:21:52.338Z"
+      "dateAdded": "2026-02-21T22:49:31.680Z"
     }
   ]
 }

@@ -3,12 +3,21 @@
   <h1 class="text-2xl font-bold">
     Welcome !
   </h1>
-  <form (ngSubmit)="submit()"  [formGroup]="registerForm" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <form (ngSubmit)="submit()" [formGroup]="registerForm"
+    class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
     <fieldset class="fieldset">
-      <label class="label">Username</label>
-      <input formControlName="username" type="text" class="input validator" placeholder="Username" required />
-      @if (username.touched && username.hasError('required')) {
-        <p class="text-red-500">required</p>
+      <label class="label">Nom</label>
+      <input formControlName="nom" type="text" class="input validator" placeholder="Nom" required />
+      @if (nom.touched && nom.hasError('required')) {
+      <p class="text-red-500">required</p>
+      }
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <label class="label">Prénom</label>
+      <input formControlName="prenom" type="text" class="input validator" placeholder="Prénom" required />
+      @if (prenom.touched && prenom.hasError('required')) {
+      <p class="text-red-500">required</p>
       }
     </fieldset>
 
@@ -16,7 +25,7 @@
       <label class="label">Email</label>
       <input formControlName="email" type="email" class="input validator" placeholder="Email" required />
       @if (email.touched && email.hasError('required')) {
-        <p class="text-red-500">required</p>
+      <p class="text-red-500">required</p>
       }
     </fieldset>
 
@@ -24,17 +33,16 @@
       <span class="label">Password</span>
       <input formControlName="password" type="password" class="input validator" placeholder="Password" required />
       @if (
-        password.touched &&
-        password.hasError('required')
-        ) {
-        <p class="text-red-500">required</p>
+      password.touched &&
+      password.hasError('required')
+      ) {
+      <p class="text-red-500">required</p>
       }
     </label>
 
-    <button class="btn btn-neutral mt-4" type="submit">Login</button>
+    <button class="btn btn-neutral mt-4" type="submit">Register</button>
     <button class="btn btn-ghost mt-1" type="reset">Reset</button>
   </form>
 
-  <p>you  have an account? <span class="underline cursor-pointer" routerLink="/login">sign in!</span> </p>
+  <p>you have an account? <span class="underline cursor-pointer" routerLink="/login">sign in!</span> </p>
 </section>
-
