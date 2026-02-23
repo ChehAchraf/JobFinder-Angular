@@ -41,9 +41,53 @@
       "username": "ashraf",
       "email": "ashraf@gmail.com",
       "password": "khalid1999"
+    },
+    {
+      "id": "e500",
+      "nom": "zakaria",
+      "prenom": "elhassad",
+      "email": "elhassad@gmail.com",
+      "password": "elhassad@gmail.com"
     }
   ],
-  "fav": [],
+  "fav": [
+    {
+      "id": "bba4",
+      "userId": "d065",
+      "jobId": "19225596",
+      "jobTitle": "Registered Nurse Registered Nurse Med/Surg Telemetry Full Time Nights",
+      "companyName": "DMC Sinai-Grace Hospital",
+      "location": "Dearborn, MI",
+      "date": "2025-06-10T09:59:33Z"
+    },
+    {
+      "id": "faea",
+      "userId": "e500",
+      "jobId": "19225596",
+      "jobTitle": "Registered Nurse Registered Nurse Med/Surg Telemetry Full Time Nights",
+      "companyName": "DMC Sinai-Grace Hospital",
+      "location": "Dearborn, MI",
+      "date": "2025-06-10T09:59:33Z"
+    },
+    {
+      "id": "b483",
+      "userId": "e500",
+      "jobId": "17625191",
+      "jobTitle": "Relationship Banker - Sarasota Market",
+      "companyName": "Bank of America",
+      "location": "Sarasota, FL",
+      "date": "2025-01-17T00:02:34Z"
+    },
+    {
+      "id": "bddc",
+      "userId": "e500",
+      "jobId": "21315992",
+      "jobTitle": "Staff Data Engineer, Tech Strategy & Ops - DROIDS Insights",
+      "companyName": "Riot Games",
+      "location": "Los Angeles, CA",
+      "date": "2026-02-20T23:30:12Z"
+    }
+  ],
   "applications": [
     {
       "id": "6e7f",

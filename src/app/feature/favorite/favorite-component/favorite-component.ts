@@ -1,11 +1,9 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { FavStore } from '../../../store/fav.store';
+import { AuthStore } from '../../../store/auth.store';
 import { NavbarComponent } from "../../../shared/components/navbar-component/navbar-component";
-import { FavoriteService } from '../../../core/service/favorite-service';
 import { BreadCrumbsComponent } from "../../../shared/components/bread-crumbs-component/bread-crumbs-component";
-import { LucideAngularModule, FileIcon, Heart } from 'lucide-angular';
-import { Job } from '../../../core/model/job.model';
-
+import { LucideAngularModule, Heart } from 'lucide-angular';
 
 @Component({
   selector: 'app-favorite-component',
@@ -15,20 +13,20 @@ import { Job } from '../../../core/model/job.model';
 })
 export class FavoriteComponent implements OnInit {
 
-  favStore = inject(FavStore)
-  private favService = inject(FavoriteService)
-  favStroe = inject(FavStore)
-  isEmpty = computed(() => !this.favStore.fav() || this.favStore.fav().length === 0)
-  readonly HeartIcon = Heart
-
+  favStore = inject(FavStore);
+  private authStore = inject(AuthStore);
+  isEmpty = computed(() => !this.favStore.fav() || this.favStore.fav().length === 0);
+  readonly HeartIcon = Heart;
 
   ngOnInit(): void {
-    this.favStore.getAllFavorite();
+    const userId = this.authStore.user()?.id;
+    if (userId) {
+      this.favStore.getAllFavorite(userId);
+    }
   }
 
-  delete(jobId: string) {
-    const id = jobId
-    this.favStore.deleteFromFavorite(id);
+  delete(jobId: string): void {
+    this.favStore.deleteFromFavorite(jobId);
   }
 
 }

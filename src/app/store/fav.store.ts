@@ -6,7 +6,7 @@ import { concatMap, pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from "@ngrx/operators";
 import { HttpErrorResponse } from "@angular/common/http";
 import { favoriteRequest } from "../core/model/favorite.model";
-
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 
 type FavState = {
     favoritesList: any[],
@@ -27,25 +27,23 @@ export const FavStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
 
-    // n3yt 3la lmethods 
+
     withMethods((store, favoriteService = inject(FavoriteService)) => ({
-        getAllFavorite: rxMethod<void>(
+        getAllFavorite: rxMethod<string>(
             pipe(
-                tap((data) =>
+                tap(() =>
                     patchState(store, { isLoading: true, error: null })
                 ),
-                switchMap(() => {
-                    return favoriteService.getAllFavorite().pipe(
+                switchMap((userId) => {
+                    return favoriteService.getAllFavorite(userId).pipe(
                         tapResponse({
                             next: (response) => {
-                                console.log(response)
                                 patchState(store, {
                                     isLoading: false,
                                     fav: response
                                 })
                             },
                             error: (err: HttpErrorResponse) => {
-                                console.log(err)
                                 patchState(store, {
                                     isLoading: false,
                                     error: err.message
@@ -119,6 +117,10 @@ export const FavStore = signalStore(
                     }
                 )
             )
-        )
-    }))
+        ),
+        clearFavorites(): void {
+            patchState(store, { favoritesList: [], fav: null, isLoading: false, error: null });
+        }
+    })),
+    withDevtools('Favorites_Store')
 )

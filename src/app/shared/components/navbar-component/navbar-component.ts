@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ThemeButtonComponent } from '../theme-button-component/theme-button-component';
 import { RouterLink, Router, RouterLinkActive } from "@angular/router";
 import { AuthStore } from '../../../store/auth.store';
+import { FavStore } from '../../../store/fav.store';
 
 @Component({
   selector: 'app-navbar-component',
@@ -15,9 +16,11 @@ import { AuthStore } from '../../../store/auth.store';
 })
 export class NavbarComponent {
   readonly authStore = inject(AuthStore);
+  private readonly favStore = inject(FavStore);
   private readonly router = inject(Router);
 
-  logout() {
+  logout(): void {
+    this.favStore.clearFavorites();
     this.authStore.logout();
     this.router.navigate(['/login']);
   }

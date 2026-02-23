@@ -8,23 +8,21 @@ import { favoriteRequest, favoriteResponse } from '../model/favorite.model';
   providedIn: 'root',
 })
 export class FavoriteService {
-  
+
   private http = inject(HttpClient)
   private jsonApiUrl = environment.jsonServer
 
-  getAllFavorite() : Observable<favoriteResponse>{
+  getAllFavorite(userId: string): Observable<favoriteResponse[]> {
+    return this.http.get<favoriteResponse[]>(`${this.jsonApiUrl}/fav?userId=${userId}`);
+  }
 
-    return this.http.get<favoriteResponse>(`${this.jsonApiUrl}/fav`)
+  addToFavorite(data: favoriteRequest): Observable<favoriteResponse> {
+
+    return this.http.post<favoriteRequest>(`${this.jsonApiUrl}/fav`, data);
 
   }
 
-  addToFavorite(data : favoriteRequest) : Observable<favoriteResponse>{
-
-    return this.http.post<favoriteRequest>(`${this.jsonApiUrl}/fav`,data);
-    
-  }
-
-  deleteFromFavorite(jobId : string) : Observable<void>{
+  deleteFromFavorite(jobId: string): Observable<void> {
     return this.http.delete<void>(`${this.jsonApiUrl}/fav/${jobId}`)
   }
 
